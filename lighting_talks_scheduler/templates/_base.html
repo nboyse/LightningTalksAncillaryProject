@@ -1,6 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" class="govuk-template ">
 
+{% block head %}
 <head>
   <meta charset="utf-8">
   <title>GOV.UK - The best place to find government services and information</title>
@@ -9,15 +11,15 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="/assets/images/favicon.ico" type="image/x-icon">
-  <link rel="mask-icon" href="/assets/images/govuk-mask-icon.svg" color="#0b0c0c">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/govuk-apple-touch-icon-180x180.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="/assets/images/govuk-apple-touch-icon-167x167.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/govuk-apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" href="/assets/images/govuk-apple-touch-icon.png">
+  <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
+  <link rel="mask-icon" href="{% static 'assets/images/govuk-mask-icon.svg' %}" color="#0b0c0c">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/images/govuk-apple-touch-icon-180x180.png' %}">
+  <link rel="apple-touch-icon" sizes="167x167" href="{% static 'assets/images/govuk-apple-touch-icon-167x167.png' %}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/images/govuk-apple-touch-icon-152x152.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'assets/images/govuk-apple-touch-icon.png' %}">
 
   <!--[if !IE 8]><!-->
-  <link type="stylesheet" src="/govuk-frontend/govuk/all.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'govuk-frontend-ie8-4.0.1.min.css'%}"/>
   <!--<![endif]-->
 
   <!--[if IE 8]>
@@ -29,8 +31,10 @@
   <![endif]-->
 
 </head>
+{% endblock %}
 
-<body class="govuk-template__body ">
+{% block body %}
+<body class="govuk-template__body">
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
@@ -59,12 +63,15 @@
       </div>
     </div>
   </header>
-
   <div class="govuk-width-container ">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <h1 class="govuk-heading-xl">Default page template</h1>
+  {% block content %}
+  {% endblock %}
     </main>
   </div>
+  {% endblock %}
+
+  {% block footer %}
 
   <footer class="govuk-footer " role="contentinfo">
     <div class="govuk-width-container ">
@@ -85,6 +92,8 @@
       </div>
     </div>
   </footer>
+
+  {% endblock %}
 
 <!--  <script href="/govuk-frontend/all.js"></script>-->
 <!--  <script>-->
