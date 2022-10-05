@@ -1,0 +1,37 @@
+{% extends '_base.html' %}
+
+
+{% block content %}
+<!--  Todo: Rachel to write the homepage -->
+<h1 class="govuk-heading-xl">Book a lightning talk</h1>
+
+<fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        What is your name?
+      </h1>
+    </legend>
+  
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="address-line-1">
+        First Name
+      </label>
+      <input class="govuk-input" id="first-name" name="first-name" type="text" autocomplete="address-line1">
+      <span class="govuk-visually-hidden">Error:</span> Enter your first name
+    </p>
+    </div>
+  
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="address-line-2">
+        Last name
+      </label>
+      <input class="govuk-input" id="last-name" name="last name" type="text" autocomplete="last cc-given-name">
+      <p id="full-name-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Enter your last name
+      </p>
+      <input class="govuk-input govuk-input--error" id="full-name" name="full-name" type="text" spellcheck="false" aria-describedby="full-name-error" autocomplete="name">
+    </div>
+    
+  </fieldset>
+
+{% endblock %}
