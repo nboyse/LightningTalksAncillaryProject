@@ -5,6 +5,7 @@
 <!--  Todo: Rachel to write the homepage -->
 <h1 class="govuk-heading-xl">Book a lightning talk</h1>
 
+<a href="homepage.html" class="govuk-link">back</a></p>
 <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
@@ -12,26 +13,44 @@
       </h1>
     </legend>
   
+
     <div class="govuk-form-group">
-      <label class="govuk-label" for="address-line-1">
+      <label class="govuk-label" for="first-name">
         First Name
       </label>
       <input class="govuk-input" id="first-name" name="first-name" type="text" autocomplete="address-line1">
-      <span class="govuk-visually-hidden">Error:</span> Enter your first name
-    </p>
     </div>
   
     <div class="govuk-form-group">
-      <label class="govuk-label" for="address-line-2">
+      <label class="govuk-label" for="last-name">
         Last name
       </label>
       <input class="govuk-input" id="last-name" name="last name" type="text" autocomplete="last cc-given-name">
-      <p id="full-name-error" class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> Enter your last name
-      </p>
-      <input class="govuk-input govuk-input--error" id="full-name" name="full-name" type="text" spellcheck="false" aria-describedby="full-name-error" autocomplete="name">
     </div>
-    
+
   </fieldset>
+
+{% if field.errors %}
+    <div class = “govuk input class {% if field.errors %} error class {% endif %}”>
+    <p id="first-name-error" class="govuk-error-message" for="first-name">
+      <span class="govuk-visually-hidden">Error:</span> Enter your first name
+    </p>
+    <input class="govuk-input govuk-input--error" id="first-name" name="first-name" type="text" spellcheck="false" aria-describedby="full-name-error" autocomplete="name">
+  </div>
+  </div>
+
+    <div class = “govuk input class {% if field.errors %} error class {% endif %}”>
+    <p id="first-name-error" class="govuk-error-message" for="last-name">
+      <span class="govuk-visually-hidden">Error:</span> Enter your last name
+    </p>
+    <input class="govuk-input govuk-input--error" id="first-name" name="first-name" type="text" spellcheck="false" aria-describedby="full-name-error" autocomplete="name">
+  </div>
+  </div>
+{%endif%}
+
+
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
 
 {% endblock %}
