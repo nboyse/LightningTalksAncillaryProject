@@ -29,7 +29,7 @@ class LightningTalk(models.Model):
     subject = models.CharField(max_length=240)
 
 
-class PersonForm(Person):
+class PersonForm(ModelForm):
     class Meta:
         model = Person
         fields = ['first_name', 'last_name']

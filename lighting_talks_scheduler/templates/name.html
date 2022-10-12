@@ -12,15 +12,26 @@
         What is your name?
       </h1>
     </legend>
-  
 
+    <script>
+      function validateForm() {
+        var x = document.forms["myForm"]["fname"].value;
+        if (x == "" || x == null) {
+          alert("Name must be filled out");
+          return false;
+        }
+      }
+    </script>
+  
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post" required>
     <div class="govuk-form-group">
       <label class="govuk-label" for="first-name">
         First Name
       </label>
-      <input class="govuk-input" id="first-name" name="first-name" type="text" autocomplete="address-line1">
+      <input class="govuk-input" id="first-name" name="first-name" type="text" autocomplete="address-line1" required>
     </div>
-  
+
+
     <div class="govuk-form-group">
       <label class="govuk-label" for="last-name">
         Last name
@@ -49,8 +60,10 @@
 {%endif%}
 
 
-  <button class="govuk-button" data-module="govuk-button">
+  <button class="govuk-button" data-module="govuk-button" type="submit">
     Continue
   </button>
 
+
+</form>
 {% endblock %}
