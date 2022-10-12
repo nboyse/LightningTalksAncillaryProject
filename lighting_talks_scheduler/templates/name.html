@@ -2,67 +2,71 @@
 
 
 {% block content %}
-<!--  Todo: Rachel to write the homepage -->
-<h1 class="govuk-heading-xl">Book a lightning talk</h1>
 
 <a href="homepage.html" class="govuk-link">back</a></p>
-<fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
+<legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
         What is your name?
-      </h1>
-    </legend>
+    </h1>
+</legend>
 
-    <script>
-      function validateForm() {
-        var x = document.forms["myForm"]["fname"].value;
-        if (x == "" || x == null) {
-          alert("Name must be filled out");
-          return false;
-        }
-      }
-    </script>
-  
-<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post" required>
-    <div class="govuk-form-group">
-      <label class="govuk-label" for="first-name">
-        First Name
-      </label>
-      <input class="govuk-input" id="first-name" name="first-name" type="text" autocomplete="address-line1" required>
+
+<form method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    <div class="govuk-grid-row">
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+             data-module="govuk-error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for error in form.non_field_errors %}
+                    <li>
+                        {{ error }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!--    User's first name and last name details -->
+    <div class="govuk-form-group {% if form.first_name.errors %} govuk-form-group--error{% endif %}">
+        <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span></span>
+        {% if form.first_name.errors %}
+        {% for error in form.first_name.errors %}
+        <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span>{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+        <label class="govuk-label" for="{{ form.first_name.id_for_label }}">
+            {{ form.first_name.label }}
+        </label>
+        <input class="govuk-input" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}"
+               value="{{ form.first_name.value|default_if_none:'' }}" type="text" required>
     </div>
 
 
-    <div class="govuk-form-group">
-      <label class="govuk-label" for="last-name">
-        Last name
-      </label>
-      <input class="govuk-input" id="last-name" name="last name" type="text" autocomplete="last cc-given-name">
+    <div class="govuk-form-group {% if form.last_name.errors %} govuk-form-group--error{% endif %}">
+        {% if form.last_name.errors %}
+        {% for error in form.last_name.errors %}
+        <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span>{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+        <label class="govuk-label" for="{{ form.last_name.id_for_label }}">
+            {{ form.last_name.label }}
+        </label>
+        <input class="govuk-input" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}"
+               value="{{ form.last_name.value|default_if_none:'' }}" type="text" required>
     </div>
 
-  </fieldset>
 
-{% if field.errors %}
-    <div class = “govuk input class {% if field.errors %} error class {% endif %}”>
-    <p id="first-name-error" class="govuk-error-message" for="first-name">
-      <span class="govuk-visually-hidden">Error:</span> Enter your first name
-    </p>
-    <input class="govuk-input govuk-input--error" id="first-name" name="first-name" type="text" spellcheck="false" aria-describedby="full-name-error" autocomplete="name">
-  </div>
-  </div>
-
-    <div class = “govuk input class {% if field.errors %} error class {% endif %}”>
-    <p id="first-name-error" class="govuk-error-message" for="last-name">
-      <span class="govuk-visually-hidden">Error:</span> Enter your last name
-    </p>
-    <input class="govuk-input govuk-input--error" id="first-name" name="first-name" type="text" spellcheck="false" aria-describedby="full-name-error" autocomplete="name">
-  </div>
-  </div>
-{%endif%}
-
-
-  <button class="govuk-button" data-module="govuk-button" type="submit">
-    Continue
-  </button>
+    <input class="govuk-button" data-module="govuk-button" type="submit" value="Continue"/>
 
 
 </form>

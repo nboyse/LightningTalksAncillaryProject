@@ -16,10 +16,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from .views import homepage, name
+from .views import homepage, NameView, EmailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
-    path('name/', name, name='name')
+    path('name/', NameView.as_view(), name='name'),
+    # todo - Rachel's next trello board ticket
+    # path('email/', EmailView.as_view(), name='email')
 ]
