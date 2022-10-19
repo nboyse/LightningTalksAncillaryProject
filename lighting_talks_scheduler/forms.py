@@ -14,5 +14,21 @@ class UserNameForm(forms.ModelForm):
             "last_name",
         )
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
+        #def clean(self):
+         #cleaned_data = super().clean()
+
+
+class EmailForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].required = True
+
+    class Meta:
+        model = Person
+        fields = (
+            "email",
+            "confirm_your_email_address"
+        )
+
+        #def clean(self):
+        # cleaned_data = super().clean()

@@ -40,7 +40,7 @@
         {% if form.first_name.errors %}
         {% for error in form.first_name.errors %}
         <span class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span>{{ error }}</span>
+            <span class="govuk-visually-hidden">Error:</span>Enter your first name</span>
         {% endfor %}
         {% endif %}
         <label class="govuk-label" for="{{ form.first_name.id_for_label }}">
@@ -55,7 +55,7 @@
         {% if form.last_name.errors %}
         {% for error in form.last_name.errors %}
         <span class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span>{{ error }}</span>
+            <span class="govuk-visually-hidden">Error:</span>Enter your last name</span>
         {% endfor %}
         {% endif %}
         <label class="govuk-label" for="{{ form.last_name.id_for_label }}">
@@ -63,10 +63,10 @@
         </label>
         <input class="govuk-input" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}"
                value="{{ form.last_name.value|default_if_none:'' }}" type="text" required>
-    </div>
+        </div>
 
 
-    <input class="govuk-button" data-module="govuk-button" type="submit" value="Continue"/>
+        <input a href="email.html" class="govuk-button" data-module="govuk-button" type="submit" value="Continue"/>
 
 
 </form>

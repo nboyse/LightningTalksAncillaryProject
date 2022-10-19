@@ -1,0 +1,73 @@
+{% extends '_base.html' %}
+
+
+{% block content %}
+
+<a href="homepage.html" class="govuk-link">back</a></p>
+<legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+        What is your email address?
+    </h1>
+</legend>
+
+<form action="/form-handler" method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    <div class="govuk-grid-row">
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-disable-auto-focus="true" tabindex="-1"
+             data-module="govuk-error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for error in form.non_field_errors %}
+                    <li>
+                        <a href="#full-name-input">Enter your email</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>    
+    {% endif %}
+
+
+    <div class="govuk-form-group {% if form.email.errors %} govuk-form-group--error{% endif %}">
+        <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span></span>
+        {% if form.email.errors %}
+        {% for error in form.email.errors %}
+        <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span>{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+        <label class="govuk-label" for="{{ form.email.id_for_label }}">
+            {{ form.email.label }}
+        </label>
+        <input class="govuk-input" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}"
+               value="{{ form.email.value|default_if_none:'' }}" type="text" required>
+    </div>
+
+
+    <div class="govuk-form-group {% if form.confirm_your_email_address.errors %} govuk-form-group--error{% endif %}">
+        {% if form.confirm_your_email_address.errors %}
+        {% for error in form.confirm_your_email_address.errors %}
+        <span class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span>Email does not match</span>
+        {% endfor %}
+        {% endif %}
+        <label class="govuk-label" for="{{ form.confirm_your_email_address.id_for_label }}">
+            {{ form.confirm_your_email_address.label }}
+        </label>
+        <input class="govuk-input" id="{{ form.confirm_your_email_address.id_for_label }}" name="{{ form.confirm_your_email_address.html_name }}"
+               value="{{ form.confirm_your_email_address.value|default_if_none:'' }}" type="text" required>
+    </div>
+
+
+    <input class="govuk-button" data-module="govuk-button" type="submit" value="Continue"/>
+
+
+</form>
+
+{% endblock %}
