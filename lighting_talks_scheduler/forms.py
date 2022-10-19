@@ -14,8 +14,8 @@ class UserNameForm(forms.ModelForm):
             "last_name",
         )
 
-        #def clean(self):
-         #cleaned_data = super().clean()
+        # def clean(self):
+        # cleaned_data = super().clean()
 
 
 class EmailForm(forms.ModelForm):
@@ -25,10 +25,7 @@ class EmailForm(forms.ModelForm):
 
     class Meta:
         model = Person
-        fields = (
-            "email",
-            "confirm_your_email_address"
-        )
+        fields = ("email", "confirm_your_email_address")
 
-        #def clean(self):
+        # def clean(self):
         # cleaned_data = super().clean()

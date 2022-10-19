@@ -8,28 +8,36 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lighting_talks_scheduler', '0001_initial'),
+        ("lighting_talks_scheduler", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='person',
-            name='email',
+            model_name="person",
+            name="email",
             field=models.EmailField(max_length=100),
         ),
         migrations.AlterField(
-            model_name='person',
-            name='first_name',
-            field=models.CharField(max_length=100, validators=[django.core.validators.RegexValidator(regex='[a-z]+$')]),
+            model_name="person",
+            name="first_name",
+            field=models.CharField(
+                max_length=100,
+                validators=[django.core.validators.RegexValidator(regex="[a-z]+$")],
+            ),
         ),
         migrations.AlterField(
-            model_name='person',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="person",
+            name="id",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='person',
-            name='last_name',
-            field=models.CharField(max_length=100, validators=[django.core.validators.RegexValidator(regex='[a-z]+$')]),
+            model_name="person",
+            name="last_name",
+            field=models.CharField(
+                max_length=100,
+                validators=[django.core.validators.RegexValidator(regex="[a-z]+$")],
+            ),
         ),
     ]

@@ -11,8 +11,7 @@ class Person(models.Model):
         max_length=100, validators=[RegexValidator(regex=r"[a-z]+$")], blank=False
     )
     email = models.EmailField(max_length=100)
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False
-    )
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     confirm_your_email_address = models.EmailField(max_length=100)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
