@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views.generic import CreateView
 from django.views.generic.edit import FormMixin
 from django.http import HttpResponseServerError
+from django.core.validators import ValidationError
 from .models import Person
 from .forms import UserNameForm
 from .forms import EmailForm
@@ -46,11 +47,13 @@ class EmailView(CreateView):
     # form_class = EmailForm
 
     def form_valid(self, form):
-        Person.objects.create(
-            email=form.cleaned_data["email"],
-            confirm_your_email_address=form.cleaned_data["confirm_your_email_address"],
+        try:
+            Person.objects.create(
+                first_name=form.cleaned_data["first_name"],
+                last_name=form.cleaned_data["last_name"],
         )
-
-        # todo - redirect this (set up urls.py, views etc. for the next trello ticket after you've done the email one)
-        # return redirect(reverse("next_trello_ticket"))
-        return redirect(reverse("next_trello_ticket"))
+            return redirect(reverse("email"))
+        except ValidationError as e:
+            return HttpResponseServerError(
+                f"error creating person object {e.messages}"
+        )
