@@ -22,6 +22,8 @@ class Person(models.Model):
 class LightningTalk(models.Model):
     user = models.ForeignKey(Person, on_delete=models.PROTECT)
     time = models.TimeField()
-    date = models.DateField()
+    day = models.IntegerField(max_length=2)
+    month = models.IntegerField(max_length=2)
+    year = models.IntegerField(max_length=4)
     title = models.CharField(max_length=240)
     subject = models.CharField(max_length=240)
