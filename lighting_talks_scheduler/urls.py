@@ -16,13 +16,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from .views import homepage, NameView, EmailView
+from .views import homepage, NameView, EmailView, DateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", homepage),
     path("name/", NameView.as_view(), name="name"),
     path("email/", EmailView.as_view(), name="email"),
+    path("date/", DateView.as_view(), name="date")
     # todo - Rachel's next trello board ticket
     # path('email/', EmailView.as_view(), name='email')
 ]

@@ -5,7 +5,7 @@ from django.views.generic.edit import FormMixin
 from django.http import HttpResponseServerError
 from django.core.validators import ValidationError
 from .models import Person
-from .forms import UserNameForm
+from .forms import DateForm, UserNameForm
 from .forms import EmailForm
 
 
@@ -51,6 +51,27 @@ class EmailView(CreateView):
             Person.objects.create(
                 first_name=form.cleaned_data["first_name"],
                 last_name=form.cleaned_data["last_name"],
+        )
+            return redirect(reverse("email"))
+        except ValidationError as e:
+            return HttpResponseServerError(
+                f"error creating person object {e.messages}"
+        )
+
+
+class DateView(CreateView):
+    model = Person
+    template_name = "date.html"
+    form_class = DateForm
+    # todo - you need to create this the same way I created the NameForm
+    # form_class = EmailForm
+
+    def form_valid(self, form):
+        try:
+            Person.objects.create(
+                day=form.cleaned_data["day"],
+                month=form.cleaned_data["month"],
+                year=form.cleaned_data["year"],
         )
             return redirect(reverse("email"))
         except ValidationError as e:
